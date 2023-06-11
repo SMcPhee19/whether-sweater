@@ -63,4 +63,3 @@ gem "faraday", "~> 2.7"
 gem "figaro", "~> 1.2"
 gem "jsonapi-serializer", "~> 2.2"
 gem "bcrypt", "~> 3.1"
-  # Adds support 
