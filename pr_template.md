@@ -14,9 +14,4 @@
 - [ ] All other tests are also passing (please note if not) 
   - Current coverage %: 
 
-## Number of reviewers
-- [ ] 1
-- [ ] 2
-- [ ] 3
-
 ## Emoji or GIF about how you feel rn (optional)
