@@ -38,7 +38,7 @@ class ForecastFacade
         icon: day[:day][:condition][:icon]
       }
     end
-    Forcast.new(current_weather, hourly_weather, daily_weather)
+    Forecast.new(current_weather, hourly_weather, daily_weather)
   end
 
   def geocode_service
