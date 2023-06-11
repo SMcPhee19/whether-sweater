@@ -8,7 +8,7 @@ class WeatherService
   end
 
   def get_hourly(lat, lon)
-
+    get_url("/v1/forecast.json?q=#{lat},#{lon}")
   end
 
   private

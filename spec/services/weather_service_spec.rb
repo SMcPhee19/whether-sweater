@@ -40,13 +40,13 @@ RSpec.describe WeatherService do
 
   it 'returns the daily weather', :vcr do
     service = WeatherService.new
-    daily_weather = service.get_daily(39.74001, -104.99202)
+    daily = service.get_daily(39.74001, -104.99202)
 
-    expect(daily_weather).to be_a(Hash)
+    expect(daily).to be_a(Hash)
 
-    daily_weather[:forecast][:forecastday].each do |day|
+    daily[:forecast][:forecastday].each do |day|
       expect(day).to be_an(Hash)
-      
+
       expect(day).to have_key(:date)
       expect(day[:date]).to be_a(String)
       expect(day).to have_key(:day)
@@ -55,7 +55,7 @@ RSpec.describe WeatherService do
       expect(day[:day][:maxtemp_f]).to be_a(Float)
       expect(day[:day]).to have_key(:mintemp_f)
       expect(day[:day][:mintemp_f]).to be_a(Float)
-      
+
       expect(day[:day]).to have_key(:condition)
       expect(day[:day][:condition]).to be_a(Hash)
       expect(day[:day][:condition]).to have_key(:text)
@@ -69,6 +69,28 @@ RSpec.describe WeatherService do
       expect(day[:astro][:sunrise]).to be_a(String)
       expect(day[:astro]).to have_key(:sunset)
       expect(day[:astro][:sunset]).to be_a(String)
+    end
+  end
+
+  it 'returns hourly weather', :vcr do
+    service = WeatherService.new
+    hourly = service.get_hourly(39.74001, -104.99202)
+
+    hourly[:forecast][:forecastday].each do |hour|
+      expect(hour[:hour]).to be_a(Array)
+      expect(hour[:hour].count).to eq(24)
+      expect(hour[:hour][0]).to be_a(Hash)
+      expect(hour[:hour][0]).to have_key(:time)
+      expect(hour[:hour][0][:time]).to be_a(String)
+      expect(hour[:hour][0][:time]).to eq('2023-06-11 00:00')
+      expect(hour[:hour][0]).to have_key(:temp_f)
+      expect(hour[:hour][0][:temp_f]).to be_a(Float)
+      expect(hour[:hour][0]).to have_key(:condition)
+      expect(hour[:hour][0][:condition]).to be_a(Hash)
+      expect(hour[:hour][0][:condition]).to have_key(:text)
+      expect(hour[:hour][0][:condition][:text]).to be_a(String)
+      expect(hour[:hour][0][:condition]).to have_key(:icon)
+      expect(hour[:hour][0][:condition][:icon]).to be_a(String)
     end
   end
 end
