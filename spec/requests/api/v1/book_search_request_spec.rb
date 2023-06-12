@@ -13,7 +13,7 @@ RSpec.describe 'search request' do
       expect(response.status).to eq(200)
 
       books = JSON.parse(response.body, symbolize_names: true)
-
+require 'pry'; binding.pry
       expect(books).to be_a(Hash)
 
       expect(books).to have_key(:data)
