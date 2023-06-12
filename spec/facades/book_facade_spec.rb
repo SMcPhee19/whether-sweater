@@ -5,6 +5,14 @@ RSpec.describe 'book facade' do
     location = 'Denver,CO'
     quantity = 5
 
-    expect(BookFacade.new.search_books(location, quantity)).to be_a(Array)
+    search = BookFacade.new.search_books(location, quantity)
+
+    require 'pry'; binding.pry
+    expect(search).to be_a(Search)
+    expect(search.id).to eq(nil)
+    expect(search.type).to eq('books')
+    expect(search.current_weather).to be_a(Hash)
+    expect(search.searched_books).to be_a(Array)
+    expect(search.total_books).to be_an(Integer)
   end
 end

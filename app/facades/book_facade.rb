@@ -11,12 +11,17 @@ class BookFacade
     }
 
     books = book_service.get_books(location)
-    searched_books = books[:docs].map[0..quantity] do |book|
-    require 'pry'; binding.pry
-    {
-      isbn: book[:isbn],
-      title: book[:title]
-    }
+    searched_books = books[:docs].take(quantity).map do |book|
+      {
+        isbn: book[:isbn],
+        title: book[:title],
+        publisher: book[:publisher]
+      }
+    end
+
+    total_books = books[:numFound]
+    
+    Search.new(current_weather, searched_books, total_books)
   end
 
   def geocode_service
