@@ -59,9 +59,19 @@ RSpec.describe 'search request' do
     end
   end
 
-  describe 'sad path' do
-    it 'returns an error if location is missing', :vcr do
-      
-    end
-  end
+  # describe 'sad path' do
+  #   it 'returns an error if location is missing', :vcr do
+  #     location = ''
+  #     quantity = 10
+
+  #     get "/api/v1/book-search?location=#{location}&quantity=#{quantity}"
+
+  #     expect(response).to_not be_successful
+  #     expect(response.status).to eq(400)
+
+  #     error = JSON.parse(response.body, symbolize_names: true)
+
+  #     expect(error).to be_a(Hash)
+  #   end
+  # end
 end
