@@ -11,6 +11,7 @@ class BookFacade
     }
 
     books = book_service.get_books(location)
+    # require 'pry'; binding.pry
     searched_books = books[:docs].take(quantity).map do |book|
       {
         isbn: book[:isbn],
@@ -20,8 +21,10 @@ class BookFacade
     end
 
     total_books = books[:numFound]
+
+    destination = location
     
-    Search.new(current_weather, searched_books, total_books)
+    Search.new(current_weather, searched_books, total_books, destination)
   end
 
   def geocode_service
