@@ -11,8 +11,8 @@ class BookFacade
     }
 
     books = book_service.get_books(location)
-    # require 'pry'; binding.pry
-    searched_books = books[:docs].take(quantity).map do |book|
+    num = quantity.to_i
+    searched_books = books[:docs].take(num).map do |book|
       {
         isbn: book[:isbn],
         title: book[:title],
