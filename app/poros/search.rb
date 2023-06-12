@@ -1,17 +1,17 @@
 class Search
   attr_reader :id,
               :type,
-              :current_weather,
+              :forecast,
               :searched_books,
-              :total_books,
+              :total_books_found,
               :destination
 
-  def initialize(current_weather, searched_books, total_books, destination)
-    @id = nil
+  def initialize(forecast, searched_books, total_books_found, destination)
+    @id = 'null'
     @type = 'books'
-    @current_weather = current_weather
+    @forecast = forecast
     @searched_books = searched_books
-    @total_books = total_books
+    @total_books_found = total_books_found
     @destination = destination
   end
 end

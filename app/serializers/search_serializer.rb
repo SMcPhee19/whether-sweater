@@ -1,4 +1,4 @@
 class SearchSerializer
   include JSONAPI::Serializer
-  attributes :current_weather, :searched_books, :total_books, :destination
+  attributes :forecast, :searched_books, :total_books_found, :destination
 end

@@ -5,8 +5,8 @@ class BookFacade
     lon = geocode[:results][0][:locations][0][:latLng][:lng]
 
     current = weather_service.get_current_weather(lat, lon)
-    current_weather = {
-      conditions: current[:current][:condition][:text],
+    forecast = {
+      summary: current[:current][:condition][:text],
       temperature: current[:current][:temp_f]
     }
 
@@ -20,11 +20,11 @@ class BookFacade
       }
     end
 
-    total_books = books[:numFound]
+    total_books_found = books[:numFound]
 
     destination = location
     
-    Search.new(current_weather, searched_books, total_books, destination)
+    Search.new(forecast, searched_books, total_books_found, destination)
   end
 
   def geocode_service

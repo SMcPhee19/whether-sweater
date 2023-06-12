@@ -9,7 +9,7 @@ RSpec.describe 'book facade' do
 
     # require 'pry'; binding.pry
     expect(search).to be_a(Search)
-    expect(search.id).to eq(nil)
+    expect(search.id).to eq('null')
     expect(search.type).to eq('books')
     expect(search.current_weather).to be_a(Hash)
     expect(search.searched_books).to be_a(Array)
