@@ -24,7 +24,7 @@ class BookFacade
 
     destination = location
     
-    Search.new(forecast, searched_books, total_books_found, destination)
+    Books.new(forecast, searched_books, total_books_found, destination)
   end
 
   def geocode_service

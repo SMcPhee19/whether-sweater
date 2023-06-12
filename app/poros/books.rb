@@ -1,4 +1,4 @@
-class Search
+class Books
   attr_reader :id,
               :type,
               :forecast,
