@@ -1,4 +1,4 @@
-# spec/requests/api/v0/user_request_spec.rb
+spec/requests/api/v0/user_request_spec.rb
 require 'rails_helper'
 
 RSpec.describe 'user request' do

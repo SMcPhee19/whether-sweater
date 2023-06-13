@@ -4,5 +4,9 @@ Rails.application.routes.draw do
       resources :forecast, only: [:index]
       post :users, to: 'users#create'
     end
+
+    namespace :v1 do
+      get "book-search", to: "book_search#index"
+    end
   end
 end
