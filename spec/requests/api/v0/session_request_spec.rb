@@ -45,12 +45,31 @@ RSpec.describe 'session request' do
   end
 
   describe 'sad path' do
-    it 'user login - sad path - wrong email', :vcr do
+    it 'create session - sad path - wrong email', :vcr do
       user = User.create!(email: 'thisisanemail@email.com', password: 'password', password_confirmation: 'password')
 
       user_params = {
         "email": "thisisnottherightemail@email.com",
         "password": "password",
+      }
+
+      headers = { 'CONTENT_TYPE' => 'application/json' }
+      post '/api/v0/sessions', headers: headers, params: JSON.generate(user_params)
+      error = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(400)
+      expect(error).to be_a(Hash)
+      expect(error).to have_key(:error)
+      expect(error[:error]).to eq('Invalid email or password')
+    end
+
+    it 'create session - sad path - wrong password', :vcr do
+      user = User.create!(email: 'nuggetsarethenbachampions@email.com', password: 'smugggets', password_confirmation: 'smugggets')
+
+      user_params = {
+        "email": "nuggetsarethenbachampions@email.com",
+        "password": "nugglife",
       }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
