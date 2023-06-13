@@ -28,7 +28,7 @@ class BookFacade
   end
 
   def geocode_service
-    @geocode_service ||= GeocodeService.new
+    @geocode_service ||= MapquestService.new
   end
 
   def weather_service

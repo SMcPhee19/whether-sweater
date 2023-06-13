@@ -1,4 +1,4 @@
-class GeocodeService
+class MapquestService
   def get_coordinates(location)
     get_url("/geocoding/v1/address?location=#{location}")
   end
@@ -12,7 +12,7 @@ class GeocodeService
 
   def conn
     Faraday.new(url: 'https://www.mapquestapi.com') do |f|
-      f.params['key'] = ENV['GEOCODER_API_KEY']
+      f.params['key'] = ENV['MAPQUEST_API_KEY']
     end
   end
 end

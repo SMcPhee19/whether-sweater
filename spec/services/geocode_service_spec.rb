@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe GeocodeService do
+RSpec.describe MapquestService do
   it 'returns coordinates for a location', :vcr do
-    service = GeocodeService.new
+    service = MapquestService.new
     location = service.get_coordinates('Denver,CO')
 
     expect(location).to be_a(Hash)
