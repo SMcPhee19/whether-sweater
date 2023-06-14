@@ -43,6 +43,12 @@ RSpec.describe 'forecast request' do
       expect(forecast[:data][:attributes][:current_weather]).to have_key(:icon)
       expect(forecast[:data][:attributes][:current_weather][:icon]).to be_a(String)
 
+      # not included in current weather
+      expect(forecast[:data][:attributes][:current_weather]).to_not have_key(:is_day)
+      expect(forecast[:data][:attributes][:current_weather]).to_not have_key(:wind_kph)
+      expect(forecast[:data][:attributes][:current_weather]).to_not have_key(:precip_in)
+      expect(forecast[:data][:attributes][:current_weather]).to_not have_key(:cloud)
+
       # daily weather
       expect(forecast[:data][:attributes][:daily_weather].count).to eq(5)
       expect(forecast[:data][:attributes][:daily_weather]).to be_an(Array)
@@ -63,6 +69,12 @@ RSpec.describe 'forecast request' do
           expect(day[:conditions]).to be_a(String)
           expect(day).to have_key(:icon)
           expect(day[:icon]).to be_a(String)
+          # not included in daily weather
+          expect(day).to_not have_key(:daily_will_it_rain)
+          expect(day).to_not have_key(:daily_will_it_snow)
+          expect(day).to_not have_key(:daily_chance_of_rain)
+          expect(day).to_not have_key(:daily_chance_of_snow)
+          expect(day).to_not have_key(:avgtemp_f)
         end
 
       # hourly weather
@@ -79,6 +91,11 @@ RSpec.describe 'forecast request' do
           expect(hour[:conditions]).to be_a(String)
           expect(hour).to have_key(:icon)
           expect(hour[:icon]).to be_a(String)
+          # not included in hourly weather
+          expect(hour).to_not have_key(:cloud)
+          expect(hour).to_not have_key(:windchill_f)
+          expect(hour).to_not have_key(:wind_dir)
+          expect(hour).to_not have_key(:humidity)
         end
     end
   end
