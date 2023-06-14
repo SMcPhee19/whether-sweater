@@ -23,7 +23,7 @@ class BookFacade
     total_books_found = books[:numFound]
 
     destination = location
-    
+
     Books.new(forecast, searched_books, total_books_found, destination)
   end
 

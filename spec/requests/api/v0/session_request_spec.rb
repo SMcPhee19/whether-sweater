@@ -7,13 +7,13 @@ RSpec.describe 'session request' do
       user = User.create!(email: 'thisisanemail@email.com', password: 'password', password_confirmation: 'password')
 
       user_params = {
-        "email": "thisisanemail@email.com",
-        "password": "password",
-        "password_confirmation": "password"
+        "email": 'thisisanemail@email.com',
+        "password": 'password',
+        "password_confirmation": 'password'
       }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      post '/api/v0/sessions', headers: headers, params: JSON.generate(user_params)
+      post '/api/v0/sessions', headers:, params: JSON.generate(user_params)
       user = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
@@ -49,12 +49,12 @@ RSpec.describe 'session request' do
       user = User.create!(email: 'thisisanemail@email.com', password: 'password', password_confirmation: 'password')
 
       user_params = {
-        "email": "thisisnottherightemail@email.com",
-        "password": "password",
+        "email": 'thisisnottherightemail@email.com',
+        "password": 'password'
       }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      post '/api/v0/sessions', headers: headers, params: JSON.generate(user_params)
+      post '/api/v0/sessions', headers:, params: JSON.generate(user_params)
       error = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to_not be_successful
@@ -65,15 +65,16 @@ RSpec.describe 'session request' do
     end
 
     it 'create session - sad path - wrong password', :vcr do
-      user = User.create!(email: 'nuggetsarethenbachampions@email.com', password: 'smugggets', password_confirmation: 'smugggets')
+      user = User.create!(email: 'nuggetsarethenbachampions@email.com', password: 'smugggets',
+                          password_confirmation: 'smugggets')
 
       user_params = {
-        "email": "nuggetsarethenbachampions@email.com",
-        "password": "nugglife",
+        "email": 'nuggetsarethenbachampions@email.com',
+        "password": 'nugglife'
       }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      post '/api/v0/sessions', headers: headers, params: JSON.generate(user_params)
+      post '/api/v0/sessions', headers:, params: JSON.generate(user_params)
       error = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to_not be_successful

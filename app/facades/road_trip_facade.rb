@@ -17,6 +17,7 @@ class RoadTripFacade
 
       arrival_weather[:forecast][:forecastday].map do |day|
         next unless arrival_time.to_s.include?(day[:date])
+
         @weather_at_eta = {
           datetime: formatted_arrival_time,
           temperature: day[:hour][arrival_time.hour][:temp_f],
