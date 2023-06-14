@@ -52,51 +52,51 @@ RSpec.describe 'forecast request' do
       # daily weather
       expect(forecast[:data][:attributes][:daily_weather].count).to eq(5)
       expect(forecast[:data][:attributes][:daily_weather]).to be_an(Array)
-        # each day
-        forecast[:data][:attributes][:daily_weather].each do |day|
-          expect(day).to be_a(Hash)
-          expect(day).to have_key(:date)
-          expect(day[:date]).to be_a(String)
-          expect(day).to have_key(:sunrise)
-          expect(day[:sunrise]).to be_a(String)
-          expect(day).to have_key(:sunset)
-          expect(day[:sunset]).to be_a(String)
-          expect(day).to have_key(:max_temp)
-          expect(day[:max_temp]).to be_a(Float)
-          expect(day).to have_key(:min_temp)
-          expect(day[:min_temp]).to be_a(Float)
-          expect(day).to have_key(:conditions)
-          expect(day[:conditions]).to be_a(String)
-          expect(day).to have_key(:icon)
-          expect(day[:icon]).to be_a(String)
-          # not included in daily weather
-          expect(day).to_not have_key(:daily_will_it_rain)
-          expect(day).to_not have_key(:daily_will_it_snow)
-          expect(day).to_not have_key(:daily_chance_of_rain)
-          expect(day).to_not have_key(:daily_chance_of_snow)
-          expect(day).to_not have_key(:avgtemp_f)
-        end
+      # each day
+      forecast[:data][:attributes][:daily_weather].each do |day|
+        expect(day).to be_a(Hash)
+        expect(day).to have_key(:date)
+        expect(day[:date]).to be_a(String)
+        expect(day).to have_key(:sunrise)
+        expect(day[:sunrise]).to be_a(String)
+        expect(day).to have_key(:sunset)
+        expect(day[:sunset]).to be_a(String)
+        expect(day).to have_key(:max_temp)
+        expect(day[:max_temp]).to be_a(Float)
+        expect(day).to have_key(:min_temp)
+        expect(day[:min_temp]).to be_a(Float)
+        expect(day).to have_key(:conditions)
+        expect(day[:conditions]).to be_a(String)
+        expect(day).to have_key(:icon)
+        expect(day[:icon]).to be_a(String)
+        # not included in daily weather
+        expect(day).to_not have_key(:daily_will_it_rain)
+        expect(day).to_not have_key(:daily_will_it_snow)
+        expect(day).to_not have_key(:daily_chance_of_rain)
+        expect(day).to_not have_key(:daily_chance_of_snow)
+        expect(day).to_not have_key(:avgtemp_f)
+      end
 
       # hourly weather
       expect(forecast[:data][:attributes][:hourly_weather].count).to eq(24)
       expect(forecast[:data][:attributes][:hourly_weather]).to be_an(Array)
-        # each hour
-        forecast[:data][:attributes][:hourly_weather].each do |hour|
-          expect(hour).to be_a(Hash)
-          expect(hour).to have_key(:time)
-          expect(hour[:time]).to be_a(String)
-          expect(hour).to have_key(:temperature)
-          expect(hour[:temperature]).to be_a(Float)
-          expect(hour).to have_key(:conditions)
-          expect(hour[:conditions]).to be_a(String)
-          expect(hour).to have_key(:icon)
-          expect(hour[:icon]).to be_a(String)
-          # not included in hourly weather
-          expect(hour).to_not have_key(:cloud)
-          expect(hour).to_not have_key(:windchill_f)
-          expect(hour).to_not have_key(:wind_dir)
-          expect(hour).to_not have_key(:humidity)
-        end
+      # each hour
+      forecast[:data][:attributes][:hourly_weather].each do |hour|
+        expect(hour).to be_a(Hash)
+        expect(hour).to have_key(:time)
+        expect(hour[:time]).to be_a(String)
+        expect(hour).to have_key(:temperature)
+        expect(hour[:temperature]).to be_a(Float)
+        expect(hour).to have_key(:conditions)
+        expect(hour[:conditions]).to be_a(String)
+        expect(hour).to have_key(:icon)
+        expect(hour[:icon]).to be_a(String)
+        # not included in hourly weather
+        expect(hour).to_not have_key(:cloud)
+        expect(hour).to_not have_key(:windchill_f)
+        expect(hour).to_not have_key(:wind_dir)
+        expect(hour).to_not have_key(:humidity)
+      end
     end
   end
 

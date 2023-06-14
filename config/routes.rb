@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
 
     namespace :v1 do
-      get "book-search", to: "book_search#index"
+      get 'book-search', to: 'book_search#index'
     end
   end
 end

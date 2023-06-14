@@ -48,9 +48,9 @@ RSpec.describe 'search request' do
       books[:data][:attributes][:searched_books].each do |book|
         expect(book).to have_key(:isbn)
         # expect(book[:isbn]).to be_an(Array || nil)
-          # Note: ^ Since some of these showed up nil in my pry, the test is failng
-          # I am not sure how to test if it is either a nil or an array
-          # This was my error message: `expected nil to be a kind of Array`
+        # Note: ^ Since some of these showed up nil in my pry, the test is failng
+        # I am not sure how to test if it is either a nil or an array
+        # This was my error message: `expected nil to be a kind of Array`
         expect(book).to have_key(:title)
         expect(book[:title]).to be_a(String)
         expect(book).to have_key(:publisher)

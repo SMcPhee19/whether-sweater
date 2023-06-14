@@ -4,14 +4,14 @@ require 'rails_helper'
 RSpec.describe 'user request' do
   it 'user creation - happy path', :vcr do
     user_params = {
-      "email": "whatever@example.com",
-      "password": "password",
-      "password_confirmation": "password"
+      "email": 'whatever@example.com',
+      "password": 'password',
+      "password_confirmation": 'password'
     }
 
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
-    post '/api/v0/users', headers: headers, params: JSON.generate(user_params)
+    post '/api/v0/users', headers:, params: JSON.generate(user_params)
 
     expect(response).to be_successful
     expect(response.status).to eq(201)
@@ -42,7 +42,7 @@ RSpec.describe 'user request' do
   it 'user creation - sad path - email already taken', :vcr do
     User.create!(email: 'random@email.com', password: 'password', password_confirmation: 'password')
 
-    user_params ={
+    user_params = {
       email: 'random@email.com',
       password: 'password',
       password_confirmation: 'password'
@@ -50,7 +50,7 @@ RSpec.describe 'user request' do
 
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
-    post '/api/v0/users', headers: headers, params: JSON.generate(user_params)
+    post '/api/v0/users', headers:, params: JSON.generate(user_params)
 
     expect(response).to_not be_successful
     expect(response.status).to eq(400)
@@ -58,11 +58,11 @@ RSpec.describe 'user request' do
     error = JSON.parse(response.body, symbolize_names: true)
 
     expect(error).to be_a(Hash)
-    expect(error[:error]).to eq("Email has already been taken")
+    expect(error[:error]).to eq('Email has already been taken')
   end
 
   it 'user creation - sad path - password missmatch', :vcr do
-    user_params ={
+    user_params = {
       email: 'random@email.com',
       password: 'password',
       password_confirmation: 'p4ssw0rd'
@@ -70,7 +70,7 @@ RSpec.describe 'user request' do
 
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
-    post '/api/v0/users', headers: headers, params: JSON.generate(user_params)
+    post '/api/v0/users', headers:, params: JSON.generate(user_params)
 
     expect(response).to_not be_successful
     expect(response.status).to eq(400)
@@ -84,7 +84,7 @@ RSpec.describe 'user request' do
   it 'user creation - sad path - email already taken & password mismtach', :vcr do
     User.create!(email: 'random@email.com', password: 'password', password_confirmation: 'password')
 
-    user_params ={
+    user_params = {
       email: 'random@email.com',
       password: 'password',
       password_confirmation: 'p4ssw0rd'
@@ -92,7 +92,7 @@ RSpec.describe 'user request' do
 
     headers = { 'CONTENT_TYPE' => 'application/json' }
 
-    post '/api/v0/users', headers: headers, params: JSON.generate(user_params)
+    post '/api/v0/users', headers:, params: JSON.generate(user_params)
 
     expect(response).to_not be_successful
     expect(response.status).to eq(400)
@@ -104,13 +104,13 @@ RSpec.describe 'user request' do
   end
 
   it 'user creation - sad path - missing email', :vcr do
-    user_params ={
+    user_params = {
       password: 'password',
       password_confirmation: 'password'
     }
 
     headers = { 'CONTENT_TYPE' => 'application/json' }
-    post '/api/v0/users', headers: headers, params: JSON.generate(user_params)
+    post '/api/v0/users', headers:, params: JSON.generate(user_params)
 
     expect(response).to_not be_successful
     expect(response.status).to eq(400)

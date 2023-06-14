@@ -27,7 +27,7 @@ RSpec.describe WeatherService do
     expect(weather[:current][:condition]).to have_key(:text)
     expect(weather[:current][:condition][:text]).to be_a(String)
     expect(weather[:current][:condition]).to have_key(:icon)
-    expect(weather[:current][:condition][:icon]).to be_a(String) 
+    expect(weather[:current][:condition][:icon]).to be_a(String)
     expect(weather[:current]).to have_key(:humidity)
     expect(weather[:current][:humidity]).to be_an(Integer)
     expect(weather[:current]).to have_key(:feelslike_f)

@@ -14,7 +14,7 @@ RSpec.describe 'road trip request' do
       }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      post '/api/v0/road_trip', headers: headers, params: JSON.generate(params)
+      post '/api/v0/road_trip', headers:, params: JSON.generate(params)
       trip = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
@@ -28,7 +28,7 @@ RSpec.describe 'road trip request' do
       expect(trip[:data]).to have_key(:type)
       expect(trip[:data][:type]).to eq('road_trip')
       expect(trip[:data]).to have_key(:attributes)
-      expect(trip[:data][:attributes]).to be_a(Hash) 
+      expect(trip[:data][:attributes]).to be_a(Hash)
       expect(trip[:data][:attributes]).to have_key(:start_city)
       expect(trip[:data][:attributes][:start_city]).to be_a(String)
       expect(trip[:data][:attributes][:start_city]).to eq('los angeles,ca')
@@ -61,7 +61,7 @@ RSpec.describe 'road trip request' do
       }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      post '/api/v0/road_trip', headers: headers, params: JSON.generate(params)
+      post '/api/v0/road_trip', headers:, params: JSON.generate(params)
       impossible = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful
@@ -74,7 +74,7 @@ RSpec.describe 'road trip request' do
       expect(impossible[:data]).to have_key(:type)
       expect(impossible[:data][:type]).to eq('road_trip')
       expect(impossible[:data]).to have_key(:attributes)
-      expect(impossible[:data][:attributes]).to be_a(Hash) 
+      expect(impossible[:data][:attributes]).to be_a(Hash)
       expect(impossible[:data][:attributes]).to have_key(:start_city)
       expect(impossible[:data][:attributes][:start_city]).to be_a(String)
       expect(impossible[:data][:attributes][:start_city]).to eq('los angeles,ca')
@@ -99,7 +99,7 @@ RSpec.describe 'road trip request' do
       }
 
       headers = { 'CONTENT_TYPE' => 'application/json' }
-      post '/api/v0/road_trip', headers: headers, params: JSON.generate(params)
+      post '/api/v0/road_trip', headers:, params: JSON.generate(params)
       error = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to_not be_successful
